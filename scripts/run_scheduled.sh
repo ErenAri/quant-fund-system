@@ -22,8 +22,11 @@ echo "========================================" | tee -a "${LOG_FILE}"
 # Change to project directory
 cd "${PROJECT_DIR}"
 
-# Run trading script
-if python scripts/run_live.py --mode paper >> "${LOG_FILE}" 2>&1; then
+# Ensure Docker container is running
+docker-compose up -d >> "${LOG_FILE}" 2>&1
+
+# Run trading script inside Docker container
+if docker-compose exec -T trading-bot python scripts/run_live.py --mode paper >> "${LOG_FILE}" 2>&1; then
     echo "SUCCESS: Trading run completed at $(date)" | tee -a "${LOG_FILE}"
     EXIT_CODE=0
 else
