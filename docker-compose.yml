@@ -7,7 +7,17 @@ services:
     env_file:
       - .env
     volumes:
+      # Logs - writable, persisted on host
       - ./logs:/app/logs
-      - ./data:/app/data
+      # Data - read-only, contains historical data and models
+      - ./data:/app/data:ro
     restart: unless-stopped
-    command: tail -f /dev/null  # Keep container running for cron
+    # Keep container running for cron scheduling
+    command: tail -f /dev/null
+    # Health check inherited from Dockerfile
+    healthcheck:
+      test: ["CMD", "python", "scripts/health_check.py"]
+      interval: 1h
+      timeout: 10s
+      retries: 3
+      start_period: 5s

@@ -1,50 +1,59 @@
+# Git
+.git
+.gitignore
+
+# Environment & Secrets
+.env
+*.pem
+*.key
+credentials.json
+
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-.Python
-env/
+*.pyc
+.venv/
 venv/
+env/
 ENV/
-.venv
+
+# Logs (mounted as volume)
+logs/
+*.log
+
+# Data (mounted as volume to keep image small)
+data/
+
+# Development
+notebooks/
+*.ipynb
+.ipynb_checkpoints
 
 # Testing
 .pytest_cache/
-htmlcov/
 .coverage
+htmlcov/
+.hypothesis/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
 
 # IDE
 .vscode/
 .idea/
 *.swp
-*.swo
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Git
-.git/
-.gitignore
-
-# Logs
-*.log
-
-# Sensitive
-.env
-*.key
-*.pem
-
-# Data (we'll mount this)
-data/raw/
-*.parquet
-
 # Documentation
 docs/
-README.md
 *.md
+README.old.md
 
-# Docker
-Dockerfile
-docker-compose.yml
+# Deployment (not needed in image)
+deploy/
+.claude/
