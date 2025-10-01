@@ -1,0 +1,4 @@
+# file: C:\projects\quant-fund-mvp\src\quantfund\backtest\engine.py
+# hypothesis_version: 6.140.2
+
+[0.0, 1e-12, 1e-09, 0.0001, 0.005, 0.01, 0.1, 0.12, 0.15, 0.3, 1.0, 2.0, 3.0, 3.25, 6.5, 252.0, 100, '120m', '1d', '60m', 'BUY', 'BacktestConfig', 'CostModel', 'RiskLimits', 'SELL', 'UTC', 'ann_return', 'ann_vol', 'backtest_signals', 'close', 'date', 'datetime', 'drawdown', 'equity', 'est_cost', 'fill_price', 'high', 'low', 'max_drawdown', 'num_trades', 'open', 'perf', 'portfolio_ret', 'sharpe', 'side', 'symbol', 'timeseries', 'trades', 'turnover_abs', 'weight_change', 'weight_new', 'weight_prev']

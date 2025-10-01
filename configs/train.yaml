@@ -1,0 +1,8 @@
+cost_bps: 3
+cv_splits: 5
+purge_days: 5
+embargo_days: 2
+reports_dir: reports
+intervals:
+  - '60m'
+  - '120m'

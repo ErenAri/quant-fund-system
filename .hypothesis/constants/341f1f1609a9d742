@@ -1,0 +1,4 @@
+# file: C:\projects\quant-fund-mvp\src\quantfund\strategies\momo.py
+# hypothesis_version: 6.140.2
+
+[0.0, 0.5, 2.0, 'momo_signal', 'momo_signals']

@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m pip install:*)",
+      "Bash(python -m pytest tests/test_strategies.py::TestMomentumStrategy::test_momo_signals_basic_functionality -v)",
+      "Bash(python -m pytest tests/ -v --cov-fail-under=50)",
+      "Bash(python -m pytest tests/ -v)",
+      "Bash(python -m pytest tests/test_risk_controls.py::TestPerTradeWeightCap::test_weight_cap_with_minimum_vol -v)",
+      "Bash(python -m pytest tests/test_risk_controls.py::TestPerTradeWeightCap::test_weight_cap_clipping -v)",
+      "Bash(python -m pytest tests/test_risk_controls.py::TestDailyLossStop::test_loss_stop_properties -v)",
+      "Bash(python -m pytest tests/test_strategies.py::TestMomentumStrategy::test_momo_signals_property_based -v)",
+      "Bash(python -m pytest tests/test_config.py::TestTrainConfig::test_train_config_immutability -v)",
+      "Bash(python -m pytest tests/test_backtest_engine.py::TestBacktestSignals::test_backtest_different_risk_parameters -v --tb=short)",
+      "Bash(python -m pytest tests/test_risk_controls.py::TestPerTradeWeightCap -v)",
+      "Bash(python -m pytest tests/test_strategies.py::TestMomentumStrategy::test_momo_signals_property_based tests/test_backtest_engine.py::TestBacktestSignals::test_backtest_different_risk_parameters -v)",
+      "Bash(python -m pytest tests/test_risk_controls.py::TestDailyLossStop::test_loss_stop_multiple_days tests/test_risk_controls.py::TestDailyLossStop::test_loss_stop_edge_cases -v --tb=short)",
+      "Bash(python -m pytest tests/ -v --cov-fail-under=45)",
+      "Bash(python:*)",
+      "Bash(dir:*)",
+      "Bash($env:ALPACA_API_KEY=\"CKQG6NWBZRA38VI92J2U\")",
+      "Bash($env:ALPACA_SECRET_KEY=\"OmMd5rFhiqoZImhOqp5kxADbbuEgVNNFkRleRl2V\")",
+      "Bash($env:ALPACA_API_KEY=\"CKFP0OIL8I1R69QD0338\")",
+      "Bash($env:ALPACA_SECRET_KEY=\"zznmEgFnAPMprYNqIfhbx9IFAy8IhbW40IeFg0Th\")",
+      "Bash($env:ALPACA_API_KEY=\"PKDZDT1U3X5RB1FWWXCB\")",
+      "Bash($env:ALPACA_SECRET_KEY=\"h0H9chxb2hiD8YE5VcN0eBN1K1pKY5SHg6UA6JEo\")",
+      "Bash(export ALPACA_API_KEY=\"PKDZDT1U3X5RB1FWWXCB\")",
+      "Bash(export ALPACA_SECRET_KEY=\"h0H9chxb2hiD8YE5VcN0eBN1K1pKY5SHg6UA6JEo\")",
+      "Bash(cat:*)",
+      "Bash(gh:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

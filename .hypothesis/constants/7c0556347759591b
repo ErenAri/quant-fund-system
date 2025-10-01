@@ -1,0 +1,4 @@
+# file: C:\projects\quant-fund-mvp\src\quantfund\strategies\meanrev.py
+# hypothesis_version: 6.140.2
+
+[0.0, 1.0, 3.0, 70.0, 100, 'ema20_z', 'meanrev_signal', 'meanrev_signals', 'rsi_14', 'zscore_20']

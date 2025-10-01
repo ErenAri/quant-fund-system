@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  trading-bot:
+    build: .
+    container_name: quantfund-trader
+    env_file:
+      - .env
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+    restart: unless-stopped
+    command: tail -f /dev/null  # Keep container running for cron
