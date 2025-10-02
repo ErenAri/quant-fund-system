@@ -145,7 +145,7 @@ def main(features_dir: str, interval: str, models_dir: str, use_model: bool, sta
         # Apply volatility scaling if enabled
         if vol_scale:
             # Scale signal by inverse of volatility ratio (reduce in high vol)
-            vol_ratio_term = sdf.get("vol_ratio_term", pd.Series(1.0, index=sdf.index))
+            vol_ratio_term = sdf["vol_ratio_term"] if "vol_ratio_term" in sdf.columns else pd.Series(1.0, index=sdf.index)
             # When short-term vol > long-term vol (ratio > 1), scale down
             vol_scaler = 1.0 / (1.0 + vol_ratio_term.clip(0.5, 2.0))  # range [0.33, 0.67]
             sig = sig * vol_scaler

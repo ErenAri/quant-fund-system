@@ -28,7 +28,20 @@
       "Bash(cat:*)",
       "Bash(gh:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(docker-compose build:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(docker-compose exec trading-bot python scripts/run_paper.py:*)",
+      "Bash(docker-compose exec trading-bot cat:*)",
+      "Bash(docker-compose:*)",
+      "Bash(findstr:*)",
+      "Bash(where python)",
+      "Bash(.venvScriptspython.exe -m pip list)",
+      "Bash(.venv_mvpScriptspython.exe -m pip list)",
+      "Bash(\".venv/Scripts/python.exe\" -m pip list)",
+      "Bash(\".venv_mvp/Scripts/python.exe\" -m pip list)"
     ],
     "deny": [],
     "ask": []

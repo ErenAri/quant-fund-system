@@ -1,23 +1,30 @@
-version: '3.8'
+version: "3.9"
 
 services:
   trading-bot:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: quantfund-trader
-    env_file:
-      - .env
+    working_dir: /app
+    env_file: .env
+    command: ["python", "scripts/run_live.py", "--mode", "paper"]
+    environment:
+      - PYTHONPATH=/app/src
+      - ACCOUNT_TYPE=paper
+      - ALPACA_API_KEY_ID=${ALPACA_API_KEY_ID}
+      - ALPACA_API_SECRET_KEY=${ALPACA_API_SECRET_KEY}
+      - ALPACA_ENDPOINT=https://paper-api.alpaca.markets/v2
     volumes:
-      # Logs - writable, persisted on host
+      - ./scripts:/app/scripts:rw
+      - ./src:/app/src:rw
+      - ./config:/app/config:rw
       - ./logs:/app/logs
-      # Data - read-only, contains historical data and models
       - ./data:/app/data:ro
-    restart: unless-stopped
-    # Keep container running for cron scheduling
-    command: tail -f /dev/null
-    # Health check inherited from Dockerfile
     healthcheck:
-      test: ["CMD", "python", "scripts/health_check.py"]
-      interval: 1h
-      timeout: 10s
+      test: ["CMD-SHELL", "python - <<'PY'\nimport os, sys\nsys.exit(0 if os.path.isdir('/app/logs') else 1)\nPY"]
+      interval: "60s"
+      timeout: "10s"
       retries: 3
-      start_period: 5s
+      start_period: "5s"
+    restart: unless-stopped
