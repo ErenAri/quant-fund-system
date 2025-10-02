@@ -18,7 +18,8 @@ services:
     volumes:
       - ./scripts:/app/scripts:rw
       - ./src:/app/src:rw
-      - ./config:/app/config:rw
+      - ./configs:/app/configs:rw
+      - ./artifacts:/app/artifacts:ro
       - ./logs:/app/logs
       - ./data:/app/data:ro
     healthcheck:
