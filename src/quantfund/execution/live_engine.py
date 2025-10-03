@@ -224,7 +224,10 @@ class LiveTradingEngine:
                 logger.info(f"Order executed: {order.side} {order.qty} {order.symbol}")
             except Exception as e:
                 logger.error(f"Order failed: {order.side} {order.qty} {order.symbol} - {e}")
-                results.append({"error": str(e), "order": order})
+                results.append({
+                    "error": str(e),
+                    "order": {"symbol": order.symbol, "side": order.side, "qty": order.qty}
+                })
 
         return results
 
