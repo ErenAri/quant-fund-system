@@ -25,20 +25,25 @@ This system automatically:
 
 ## 📊 Performance
 
-### Backtest Results (2020-2025)
+### Backtest Results (2020-01-01 to 2025-09-27)
 
 | Metric | Value |
 |--------|-------|
-| **Annual Return** |  1.73% |
-| **Annual Volatility** |  3.58% |
+| **Annual Return** | 1.73% |
+| **Annual Volatility** | 3.58% |
 | **Sharpe Ratio** | 0.48 |
-| **Max Drawdown** | -10.05% (risk-controlled) |
+| **Max Drawdown** | -10.05% |
 | **Total Trades** | 35,286 |
-| **Average Trades/Year** | ~7,057 |
+| **Avg Trades/Year** | ~7,057 |
 | **Strategy Mix** | 30% Momentum / 70% Mean Reversion |
 | **Trading Frequency** | Daily rebalancing |
 
-> 📝 **Note:** Run full backtest with `python scripts/run_backtest.py --interval 1d --use_model` to generate detailed performance metrics and charts.
+**Key Characteristics:**
+- ✅ **Low volatility:** 3.6% annual vol vs SPY's ~18% (defensive strategy)
+- ✅ **Risk-controlled:** Drawdown stayed under 10.1% (below 12% limit)
+- ✅ **Positive Sharpe:** 0.48 risk-adjusted returns
+- ⚠️ **High frequency:** 35k+ trades over 5 years (transaction costs matter)
+- 💡 **Ideal for:** Capital preservation with modest returns
 
 ---
 
