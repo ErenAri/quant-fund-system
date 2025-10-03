@@ -7,6 +7,9 @@
 
 A production-grade quantitative trading system that combines machine learning with technical analysis to trade ETFs autonomously. Built with XGBoost, deployed on AWS, and integrated with Alpaca Markets for commission-free trading.
 
+## Medium Article
+- [Medium](https://medium.com/@erenari27/building-an-autonomous-quant-system-from-backtest-to-aws-deployment-ec6121cb6dfe)
+
 ## 🎯 Overview
 
 This system automatically:
