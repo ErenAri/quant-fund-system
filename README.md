@@ -29,10 +29,12 @@ This system automatically:
 
 | Metric | Value |
 |--------|-------|
-| **Annual Return** | TBD |
-| **Sharpe Ratio** | TBD |
-| **Max Drawdown** | < 12% (risk-controlled) |
-| **Win Rate** | TBD |
+| **Annual Return** |  1.73% |
+| **Annual Volatility** |  3.58% |
+| **Sharpe Ratio** | 0.48 |
+| **Max Drawdown** | -10.05% (risk-controlled) |
+| **Total Trades** | 35,286 |
+| **Average Trades/Year** | ~7,057 |
 | **Strategy Mix** | 30% Momentum / 70% Mean Reversion |
 | **Trading Frequency** | Daily rebalancing |
 
