@@ -141,6 +141,7 @@ docker-compose build && docker-compose up -d
 - **Time-series cross-validation** with purge & embargo (prevents overfitting)
 - **Isotonic calibration** for accurate probability estimates
 - **Walk-forward retraining** quarterly to adapt to market changes
+- **Advanced labeling methods:** Triple barrier labeling, fractional differentiation, meta-labeling for bet sizing
 
 ### Signal Generation
 - **Momentum signals:** ML probabilities + trend indicators (MACD, ADX, EMA crossovers)
@@ -180,9 +181,12 @@ quant-fund-system/
 │   │   ├── ingest.py          # yfinance wrapper
 │   │   └── validators.py       # Data quality checks
 │   ├── features/               # Feature engineering
-│   │   └── core.py            # Technical indicators (20+)
+│   │   ├── core.py            # Technical indicators (49+)
+│   │   └── fracdiff.py        # Fractional differentiation (FFD)
 │   ├── models/                 # ML model training
-│   │   └── train.py           # XGBoost + calibration
+│   │   ├── train.py           # XGBoost + calibration
+│   │   ├── triple_barrier.py  # Triple barrier labeling
+│   │   └── meta_labeling.py   # Meta-labeling for bet sizing
 │   ├── strategies/             # Signal generation
 │   │   ├── momo.py            # Momentum signals
 │   │   ├── meanrev.py         # Mean-reversion signals
@@ -200,6 +204,10 @@ quant-fund-system/
 │   ├── fetch_data.py          # Download OHLCV data
 │   ├── make_dataset.py        # Compute features
 │   ├── train_model.py         # Train ML models
+│   ├── train_triple_barrier.py # Train with triple barrier labels
+│   ├── train_meta_model.py    # Train meta-labeling model
+│   ├── evaluate_meta_model.py # Evaluate meta-model performance
+│   ├── test_fracdiff.py       # Test fractional differentiation
 │   ├── run_backtest.py        # Run backtest
 │   ├── run_live.py            # Live/paper trading
 │   ├── run_scheduled.sh       # Cron wrapper

@@ -27,6 +27,7 @@ from ta.trend import EMAIndicator, SMAIndicator, MACD, ADXIndicator
 from ta.volatility import AverageTrueRange, BollingerBands
 
 from quantfund.features.cross_asset import compute_cross_asset_features
+from quantfund.features.fracdiff import frac_diff_ffd
 
 Interval = Literal["1d", "5d", "60m", "120m"]
 
@@ -164,6 +165,12 @@ def _compute_features(df: pd.DataFrame, interval: Interval) -> pd.DataFrame:
     # Trend strength (days above/below MA)
     above_ema20 = (close > ema20).astype(float).rolling(20).sum() / 20.0
 
+    # Fractional differentiation features (Phase 3)
+    # Addresses non-stationarity while preserving memory
+    fracdiff_d30 = frac_diff_ffd(close, d=0.3, threshold=1e-5)
+    fracdiff_d40 = frac_diff_ffd(close, d=0.4, threshold=1e-5)
+    fracdiff_d50 = frac_diff_ffd(close, d=0.5, threshold=1e-5)
+
     feat = pd.DataFrame(
         {
             # Momentum
@@ -202,6 +209,10 @@ def _compute_features(df: pd.DataFrame, interval: Interval) -> pd.DataFrame:
             # Position
             "dist_from_high": dist_from_high,
             "dist_from_low": dist_from_low,
+            # Fractional differentiation (Phase 3)
+            "fracdiff_d30": fracdiff_d30,
+            "fracdiff_d40": fracdiff_d40,
+            "fracdiff_d50": fracdiff_d50,
         },
         index=df.index,
     )
@@ -217,7 +228,22 @@ def _compute_features(df: pd.DataFrame, interval: Interval) -> pd.DataFrame:
     feat["next_open"] = open_.shift(-1)
     feat["next_close"] = close.shift(-1)
 
-    feat = feat.replace([np.inf, -np.inf], np.nan).dropna()
+    # Replace inf with NaN
+    feat = feat.replace([np.inf, -np.inf], np.nan)
+
+    # Selective imputation instead of aggressive dropna()
+    # Technical indicators can be forward-filled (they persist until new data)
+    feat = feat.ffill(limit=5)  # Forward fill up to 5 bars
+
+    # Fill remaining NaNs with 0 (neutral for z-scores, safe for most features)
+    # Exclude label columns from filling
+    label_cols = ['next_open', 'next_close']
+    feature_cols = [c for c in feat.columns if c not in label_cols]
+    feat[feature_cols] = feat[feature_cols].fillna(0)
+
+    # Only drop rows where LABELS are missing (last row typically)
+    feat = feat.dropna(subset=label_cols)
+
     return feat
 
 
